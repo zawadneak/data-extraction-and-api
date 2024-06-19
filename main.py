@@ -38,11 +38,17 @@ print(origem.head())
 # STEP 5 - Generate insert-dados.sql file with data inserts based on origem-dados
 # [4]
 print("\nGenerating INSERT SQL from origem Dataframe...")
-sql_texts = []
-for index, row in origem.iterrows():       
-    sql_texts.append('INSERT INTO dados_finais ('+ str(', '.join(origem.columns))+ ') VALUES '+ str(tuple(row.values)) + ';')     
+sql_texts = ['INSERT INTO dados_finais (',str(', '.join(origem.columns)),') VALUES\n']
+
+origen_len = len(origem.index)
+for index, row in origem.iterrows():
+    sql_texts.append('\t'+str(tuple(row.values)) + ',\n')
+
+last_row = sql_texts[-1].replace(',\n',';')
+sql_texts[-1] = last_row
+
 with open("insert-dados.sql","x") as f:
-    f.write('\n\n'.join(sql_texts))
+    f.write(''.join(sql_texts))
 print("insert-dados.sql file generated.")
     
     
