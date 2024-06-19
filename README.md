@@ -38,4 +38,4 @@ flask --app api.py run
 
 Now you can access the API at http://localhost:5000
 
-To get the type based on the id, use the route `/nome-tipo/<id>`, replacing `<id>` with the desired id.
+To get the type based on the id, use the GET route `/nome-tipo/<id>`, replacing `<id>` with the desired id.
